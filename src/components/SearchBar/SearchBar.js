@@ -3,7 +3,12 @@ import './SearchBar.css';
 
 class SearchBar extends React.Component {
   render(){
-    return <h2>Search</h2>;
+    return (
+      <div class="SearchBar">
+        <input placeholder="Enter A Song Title" />
+        <a>SEARCH</a>
+      </div>
+    );
   }
 }
 export default SearchBar;
