@@ -12,16 +12,15 @@ class SearchBar extends React.Component {
 
   handleSearchFieldChange(event){
     this.setState({term: event.target.value});
+  
   }
 
-  search(term){
-      const accessTokenReceived = Spotify.getAccessToken();
-      return fetch()
-  }
+
 
   handleSearch(event) {
     event.preventDefault();
-    search(this.state.term);
+
+    Spotify.search(this.state.term);
     // this.props.getToken();
     // const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
 
