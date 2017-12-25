@@ -1,22 +1,31 @@
 import React from 'react';
 import './SearchBar.css';
+import Spotify from '../../util/Spotify';
 
 class SearchBar extends React.Component {
   constructor(props){
     super(props);
-    this.state = {searchField: ''};
+    this.state = {term: ''};
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSearchFieldChange = this.handleSearchFieldChange.bind(this);
   }
 
   handleSearchFieldChange(event){
-    this.setState({searchField: event.target.value});
+    this.setState({term: event.target.value});
+  }
+
+  search(term){
+      const accessTokenReceived = Spotify.getAccessToken();
+      return fetch()
   }
 
   handleSearch(event) {
-    event.preventDefault()
+    event.preventDefault();
+    search(this.state.term);
+    // this.props.getToken();
+    // const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
 
-    this.props.getToken();
+
   }
 
   render(){
