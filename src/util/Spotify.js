@@ -32,7 +32,15 @@ const Spotify = {
             return response.json();
           }
           throw new Error ('Request failed!');
-      }, networkError => console.log(networkError.message)).then(jsonResponse => {console.log(jsonResponse)});
+      }, networkError => console.log(networkError.message)).then(jsonResponse => {
+        jsonResponse.artists.items.map(item => {
+          return {
+            id: item.id,
+            name: item.name
+          };
+        })
+
+      });
   }
 
 }

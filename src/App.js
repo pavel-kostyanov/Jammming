@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
+import SearchResults from './components/SearchResultsList/SearchResultsList';
 import Playlist from './components/Playlist/Playlist';
 import Spotify from './util/Spotify';
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    
+    this.state = {searchResults: []};
+    this.searchSpotify = this.searchSpotify.bind(this);
   }
 
-
+searchSpotify(term){
+  Spotify.search(term).then(searchResults => {this.setstate({searchResults: searchresults})});
+}
 
 
 
@@ -24,7 +28,7 @@ class App extends React.Component {
 
 
                     <div className="App-playlist">
-                      <SearchResults />
+                      <SearchResultsList searchResults={this.state.searchResults} />
                       <Playlist />
 
                     </div>
