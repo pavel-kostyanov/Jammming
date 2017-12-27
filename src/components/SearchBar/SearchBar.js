@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
 
   handleSearchFieldChange(event){
     this.setState({term: event.target.value});
-  
+
   }
 
 
@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
   handleSearch(event) {
     event.preventDefault();
 
-    Spotify.search(this.state.term);
+    this.props.searchSpotify(this.state.term);
     // this.props.getToken();
     // const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
 

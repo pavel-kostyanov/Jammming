@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
-import SearchResults from './components/SearchResultsList/SearchResultsList';
+import SearchResultsList from './components/SearchResultsList/SearchResultsList';
 import Playlist from './components/Playlist/Playlist';
 import Spotify from './util/Spotify';
 
@@ -14,7 +14,13 @@ class App extends React.Component {
   }
 
 searchSpotify(term){
-  Spotify.search(term).then(searchResults => {this.setstate({searchResults: searchresults})});
+Spotify.search(term).then(value => {
+
+
+  this.setState({searchResults: value});
+
+});
+
 }
 
 
@@ -24,7 +30,7 @@ searchSpotify(term){
       <div>
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
             <div className="App">
-                    < SearchBar />
+                    < SearchBar searchSpotify = {this.searchSpotify}/>
 
 
                     <div className="App-playlist">
