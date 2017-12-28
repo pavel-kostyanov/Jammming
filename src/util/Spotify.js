@@ -9,9 +9,16 @@ const Spotify = {
 
   getAccessToken(){
 
-      window.location = url;
+
       const addressField = window.location.href.match(/access_token=([^&]*)/);
-       return addressField[1];
+      if(addressField){
+       accessToken = addressField[1];
+       window.history.pushState('Access Token', null, '/');
+       return accessToken;
+     }else{
+       window.location = url;
+
+     }
   },
 
   search(term){
