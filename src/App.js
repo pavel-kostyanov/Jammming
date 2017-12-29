@@ -14,12 +14,10 @@ class App extends React.Component {
   }
 
 searchSpotify(term){
-Spotify.search(term).then(value => {
-
-
+  term = encodeURIComponent(term);
+  Spotify.search(term).then(value => {
   this.setState({searchResults: value});
-
-});
+  });
 
 }
 

@@ -12,7 +12,7 @@ class SearchResults extends React.Component {
               <div className="Track">
                   <div className="Track-information">
                     <h3>{this.props.searchResult.name}</h3>
-                    <p>Elton John | Madman Across The Water</p>
+                    <p>{this.props.searchResult.artist} | {this.props.searchResult.album}</p>
                   </div>
 
                   <a className="Track-action">+</a>
