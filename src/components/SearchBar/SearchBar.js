@@ -1,6 +1,5 @@
 import React from 'react';
 import './SearchBar.css';
-import Spotify from '../../util/Spotify';
 
 class SearchBar extends React.Component {
   constructor(props){
@@ -12,19 +11,11 @@ class SearchBar extends React.Component {
 
   handleSearchFieldChange(event){
     this.setState({term: event.target.value});
-
   }
-
-
 
   handleSearch(event) {
     event.preventDefault();
-
     this.props.searchSpotify(this.state.term);
-    // this.props.getToken();
-    // const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
-
-
   }
 
   render(){
@@ -33,7 +24,7 @@ class SearchBar extends React.Component {
         <input onChange = {this.handleSearchFieldChange} placeholder = "Enter A Song Title" />
         <a onClick = {this.handleSearch}>SEARCH</a>
       </div>
-    );
-  }
-}
+     );
+   }
+ }
 export default SearchBar;

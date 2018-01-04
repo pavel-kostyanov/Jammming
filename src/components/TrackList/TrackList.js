@@ -14,8 +14,7 @@ class TrackList extends React.Component {
                       minus={this.props.minus}
                       />})}
         </div>
-
       );
     }
-}
+ }
 export default TrackList;

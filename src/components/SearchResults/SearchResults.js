@@ -12,7 +12,7 @@ class SearchResults extends React.Component {
          onAdd={this.props.onAdd} />
       </div>
     );
-  }
-}
+   }
+ }
 
 export default SearchResults;
