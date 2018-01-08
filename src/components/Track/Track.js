@@ -29,11 +29,14 @@ class Track extends React.Component {
     render(){
       return (
           <div className="Track">
+
             <div className="Track-information">
-               <h3>{this.props.track.name}</h3>
-               <p>{this.props.track.artist} | {this.props.track.album}</p>
+               {this.plusOrMinus()}
+               <div className="Track-name">{this.props.track.name}</div>
+               <div className="Track-artist">{this.props.track.artist}</div>
+               <div className="Track-album">{this.props.track.album}</div>
              </div>
-              {this.plusOrMinus()}
+
           </div>
         )
      }

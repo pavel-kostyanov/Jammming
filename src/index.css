@@ -1,11 +1,13 @@
-body,
 html,
+body,
 #root {
   height: 100%;
 }
+
 #root {
   background-image: url('./background_photo_desktop.jpg');
   background-size:cover;
+  background-repeat: no-repeat;
 }
 html {
   font-size: 18px;

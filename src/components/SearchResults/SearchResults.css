@@ -1,6 +1,6 @@
 .SearchResults {
-  width: 50%;
-  height: 950px;
+  width: 68%;
+  min-height: 800px;
   overflow-y: scroll;
   padding: .88rem;
   background-color: rgba(1, 12, 63, 0.7);
@@ -11,7 +11,23 @@
     width: 0px;
     background: transparent;
 }
-
+.Title {
+  display:flex;
+  padding-bottom: 10px;
+  color:#6C41EC;
+}
+.Title .space {
+  width:5%;
+}
+.Title .track {
+  width:40%;
+}
+.Title .artist {
+  width:20%;
+}
+.Title .album {
+  width:35%;
+}
 @media only screen and (max-width: 1020px) {
   .SearchResults {
     width: 90%;
