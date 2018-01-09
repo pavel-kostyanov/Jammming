@@ -1,11 +1,12 @@
 import React from 'react';
 import AlbumList from '../AlbumList/AlbumList';
 import ArtistList from '../ArtistList/ArtistList';
+import './AlbumArtistWrapper.css';
 
-class AlbumArtist extends React.Component {
+class AlbumArtistWrapper extends React.Component {
   render() {
     return (
-        <div className="albumAuthorWrapper">
+        <div className="AlbumArtistWrapper">
           <AlbumList   albumsList={this.props.albumsList} />
           <ArtistList  artistList={this.props.artistList} />
         </div>
@@ -14,4 +15,4 @@ class AlbumArtist extends React.Component {
    }
  }
 
-export default AlbumArtist;
+export default AlbumArtistWrapper;

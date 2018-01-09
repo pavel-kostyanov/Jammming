@@ -1,9 +1,32 @@
 .AlbumList {
   display:flex;
-  flex-direction: column;
-  width:48%;
-  border: 1px solid green;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width:60%;
+  max-height: 490px;
+  padding: .5rem .3rem;
+  overflow-y: scroll;
+  background-color: rgba(1, 12, 63, 0.7);
+  box-shadow: 0 4px 2px 2px #000000;
+  margin-right: 20px;
+  position: relative;
 }
+.AlbumWrapper {
+  width:30%;
+  margin: 5px 0;
+
+}
+
 .AlbumName {
-  width:100%;
+
+}
+
+.AlbumPicture {
+  position: relative;
+  overflow: hidden;
+}
+.AlbumPicture>img {
+  height: 200px;
+  position: relative;
 }

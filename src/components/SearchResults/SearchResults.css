@@ -1,7 +1,7 @@
 .SearchResults {
-  
   height: 500px;
-  overflow-y: scroll;
+  position: relative;
+
   padding: .88rem;
   background-color: rgba(1, 12, 63, 0.7);
   box-shadow: 0 4px 2px 2px #000000;
@@ -15,6 +15,7 @@
   display:flex;
   padding-bottom: 10px;
   color:#6C41EC;
+  position: relative;
 }
 .Title .space {
   width:5%;
@@ -27,6 +28,10 @@
 }
 .Title .album {
   width:35%;
+}
+.results {
+  overflow-y: scroll;
+
 }
 @media only screen and (max-width: 1020px) {
   .SearchResults {

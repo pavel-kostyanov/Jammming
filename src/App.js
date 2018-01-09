@@ -3,7 +3,7 @@ import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
-import AlbumArtist from './components/AlbumArtist/AlbumArtist';
+import AlbumArtistWrapper from './components/AlbumArtistWrapper/AlbumArtistWrapper';
 import Spotify from './util/Spotify';
 
 class App extends React.Component {
@@ -84,8 +84,8 @@ class App extends React.Component {
           <div className = "App-SearchResults">
             < SearchResults trackList = {this.state.trackList}
                                 onAdd = {this.addTrack} />
-            < AlbumArtist  albumsList = {this.state.albumsList}
-                           artistList = {this.state.artistList} />
+            < AlbumArtistWrapper  albumsList = {this.state.albumsList}
+                                  artistList = {this.state.artistList} />
           </div>
         </div>
       </div>

@@ -1,9 +1,12 @@
 .ArtistList {
   display:flex;
-  width: 48%;
+  width: 40%;
   flex-direction: column;
-  border: 1px solid red;
-
+  padding: .88rem;
+  overflow-y: scroll;
+  background-color: rgba(1, 12, 63, 0.7);
+  box-shadow: 0 4px 2px 2px #000000;
+  min-height: 300px;
 }
 .ArtistName {
 

@@ -26,7 +26,7 @@ const Spotify = {
 
   search(term) {
     const accessToken = Spotify.getAccessToken();
-    const urlToFetch = `https://api.spotify.com/v1/search?q=${term}&type=track,album,artist&limit=1`;
+    const urlToFetch = `https://api.spotify.com/v1/search?q=${term}&type=track,album,artist&limit=16`;
     return fetch(urlToFetch, {
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -54,6 +54,7 @@ const Spotify = {
           return {
             id: item.id,
             name: item.name,
+            picture: item.images[1].url,
             uri: item.uri
           };
         })//---------------
@@ -61,7 +62,6 @@ const Spotify = {
           return {
             id: item.id,
             name: item.name,
-            picture: item.images[2].url,
             uri: item.uri
           };
         })//---------------
