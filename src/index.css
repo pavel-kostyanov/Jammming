@@ -4,7 +4,7 @@ body,
   height: 100%;
 }
 
-#root {
+body {
   background-image: url('./background_photo_desktop.jpg');
   background-size:cover;
   background-repeat: no-repeat;

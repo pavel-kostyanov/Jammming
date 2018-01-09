@@ -1,0 +1,10 @@
+.ArtistList {
+  display:flex;
+  width: 48%;
+  flex-direction: column;
+  border: 1px solid red;
+
+}
+.ArtistName {
+
+}

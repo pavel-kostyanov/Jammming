@@ -26,7 +26,7 @@ const Spotify = {
 
   search(term) {
     const accessToken = Spotify.getAccessToken();
-    const urlToFetch = `https://api.spotify.com/v1/search?q=${term}&type=track&limit=30`;
+    const urlToFetch = `https://api.spotify.com/v1/search?q=${term}&type=track,album,artist&limit=1`;
     return fetch(urlToFetch, {
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -40,7 +40,8 @@ const Spotify = {
         if(!jsonResponse.tracks.total){
           alert('Unfortunately, the search returned no results. Try another keyword please')
         }
-        return jsonResponse.tracks.items.map(item => {
+        console.log(jsonResponse);
+        const tracks = jsonResponse.tracks.items.map(item => {
           return {
             id: item.id,
             name: item.name,
@@ -48,7 +49,25 @@ const Spotify = {
             artist: item.artists[0].name,
             uri: item.uri
           };
-        })
+        })//---------------
+        const albums = jsonResponse.albums.items.map(item => {
+          return {
+            id: item.id,
+            name: item.name,
+            uri: item.uri
+          };
+        })//---------------
+        const artists = jsonResponse.artists.items.map(item => {
+          return {
+            id: item.id,
+            name: item.name,
+            picture: item.images[2].url,
+            uri: item.uri
+          };
+        })//---------------
+
+        const totalSearchResult = [tracks, albums, artists];
+        return totalSearchResult;
     })
   },
 

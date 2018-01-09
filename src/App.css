@@ -1,5 +1,8 @@
 .App {
   min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   padding: 0 1% 0 1%;
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
@@ -7,8 +10,20 @@
 }
 .App-playlist {
   display: flex;
-  justify-content: space-between;
+  width: 26%;
+}
+
+.App-SearchResults {
+  width: 72%;
+}
+.albumAuthorWrapper {
+  display:flex;
+  flex-direction: row;
   width: 100%;
+  height:185px;
+  margin-top: 20px;
+  overflow:hidden;
+
 }
 
 @media only screen and (max-width: 1020px) {
