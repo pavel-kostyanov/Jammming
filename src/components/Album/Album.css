@@ -4,29 +4,35 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width:60%;
-  max-height: 490px;
+  max-height: 510px;
   padding: .5rem .3rem;
   overflow-y: scroll;
   background-color: rgba(1, 12, 63, 0.7);
   box-shadow: 0 4px 2px 2px #000000;
   margin-right: 20px;
   position: relative;
+  box-sizing: border-box;
 }
 .AlbumWrapper {
   width:30%;
   margin: 5px 0;
-
+  box-sizing: border-box;
 }
 
 .AlbumName {
-
+  font-size: .7rem;
+  padding-left: 5px;
+  box-sizing: border-box;
+  line-height: 1.2;
+  cursor: pointer;
 }
 
 .AlbumPicture {
   position: relative;
   overflow: hidden;
 }
-.AlbumPicture>img {
-  height: 200px;
+.AlbumPicture>a>img {
+  max-width: 100%;
   position: relative;
+  cursor: pointer;
 }

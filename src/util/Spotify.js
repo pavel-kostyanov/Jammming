@@ -55,6 +55,7 @@ const Spotify = {
             id: item.id,
             name: item.name,
             picture: item.images[1].url,
+            artist: item.artists[0].name,
             uri: item.uri
           };
         })//---------------

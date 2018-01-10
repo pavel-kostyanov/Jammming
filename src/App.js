@@ -36,11 +36,12 @@ class App extends React.Component {
   }
 
   addTrack(track) {
-    let TemporaryArray = this.state.playlistTracks;
-    if(!TemporaryArray.some((e) => {return e.id === track.id}));
-    let updatedPlayList = TemporaryArray.push(track);
+    let updatedPlaylist = this.state.playlistTracks;
+    if(!updatedPlaylist.some((e) => {return e.id === track.id})){
+      updatedPlaylist.push(track);
+    };
     this.setState({
-      playlistTracks: updatedPlayList
+      playlistTracks: updatedPlaylist
     });
   }
 
@@ -85,7 +86,8 @@ class App extends React.Component {
             < SearchResults trackList = {this.state.trackList}
                                 onAdd = {this.addTrack} />
             < AlbumArtistWrapper  albumsList = {this.state.albumsList}
-                                  artistList = {this.state.artistList} />
+                                  artistList = {this.state.artistList}
+                                  searchSpotify = {this.searchSpotify} />
           </div>
         </div>
       </div>

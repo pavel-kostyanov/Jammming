@@ -1,8 +1,8 @@
 .SearchResults {
   height: 500px;
   position: relative;
-
   padding: .88rem;
+  padding-right: 0;
   background-color: rgba(1, 12, 63, 0.7);
   box-shadow: 0 4px 2px 2px #000000;
 }
@@ -21,7 +21,7 @@
   width:5%;
 }
 .Title .track {
-  width:40%;
+  width:39%;
 }
 .Title .artist {
   width:20%;
@@ -31,6 +31,8 @@
 }
 .results {
   overflow-y: scroll;
+  height: 97%;
+  position: relative;
 
 }
 @media only screen and (max-width: 1020px) {

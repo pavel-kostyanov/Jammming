@@ -7,8 +7,10 @@ class AlbumArtistWrapper extends React.Component {
   render() {
     return (
         <div className="AlbumArtistWrapper">
-          <AlbumList   albumsList={this.props.albumsList} />
-          <ArtistList  artistList={this.props.artistList} />
+          <AlbumList   albumsList={this.props.albumsList}
+                    searchSpotify={this.props.searchSpotify} />
+          <ArtistList  artistList={this.props.artistList}
+                    searchSpotify={this.props.searchSpotify}/>
         </div>
 
     );

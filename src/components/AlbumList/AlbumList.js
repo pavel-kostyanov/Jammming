@@ -7,9 +7,11 @@ class AlbumList extends React.Component {
       <div className="AlbumList">
         {this.props.albumsList.map(album => {
           return <Album key={album.id}
+               artistName = {album.artist}
                      name = {album.name}
-                    picture = {album.picture} />
-        })}
+                  picture = {album.picture}
+              searchSpotify={this.props.searchSpotify} />
+          })}
       </div>
     )
   }

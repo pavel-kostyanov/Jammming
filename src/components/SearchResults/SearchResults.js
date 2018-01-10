@@ -15,9 +15,9 @@ class SearchResults extends React.Component {
           <div className="album">Album</div>
         </div>
         <div className="results">
-          <TrackList trackList={this.props.trackList}
-                         onAdd={this.props.onAdd} />
-        </div>                        
+        <TrackList trackList={this.props.trackList}
+                       onAdd={this.props.onAdd} />
+        </div>
       </div>
     );
    }

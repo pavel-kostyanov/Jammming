@@ -9,7 +9,7 @@ class ArtistList extends React.Component {
           this.props.artistList.map(artist => {
             return <Artist key = {artist.id}
                           name = {artist.name}
-                       picture = {artist.picture} />
+                   searchSpotify={this.props.searchSpotify} />
           })
         }
       </div>
