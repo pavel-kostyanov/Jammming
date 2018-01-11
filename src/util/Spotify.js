@@ -1,9 +1,11 @@
-const clientID = encodeURIComponent('121fe433b47446558d8fb26cace47dfa');
+const clientID = encodeURIComponent('375cdd6fe8b743cabadc915d2511f27f');
 const scopes = encodeURIComponent('user-read-private playlist-modify-public');
 const responseType = 'token';
 const redirect_uri = encodeURIComponent('http://localhost:3000');
 let accessToken;
-
+let user_id;
+// 375cdd6fe8b743cabadc915d2511f27f
+// '121fe433b47446558d8fb26cace47dfa'
 const Spotify = {
 
   getAccessToken() {
@@ -23,6 +25,24 @@ const Spotify = {
       window.location = url;
     };
   },
+
+  getUserID(){
+    return fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Request failed!');
+      }, networkError => console.log(networkError.message))
+      .then(jsonResponse => {
+        user_id = jsonResponse.id;
+        return user_id;
+      })
+    },
 
   search(term) {
     const accessToken = Spotify.getAccessToken();
@@ -123,7 +143,46 @@ const Spotify = {
           throw new Error('Playlist creation failed!');
         }
       })
-  }
+    },
+
+    getPlaylists (){
+      let user_id = '8dq8g1bfbkv7cgjum8dykgro3';
+      //accessToken = 'BQBJWlglYXmj4jAsAYaoHFoFxmCiB8Cr7b6WSHt6VQF1c0swzXe2KGbRwBvJKBZbizYBxsPGYYAilVyjacvgnqx9o5rcV9_Y-IkyveL0323oehNtirsZnJAtCF9_RNWvE4lkd_ehh8Mk9H6z9WAM3pq1Vmwxujs8G6bLari3Ir0uWg1RfCazHheC9fP40TZu0N4z-gOp99HS';
+      // return fetch("https://api.spotify.com/v1/me", {
+      //     headers: {
+      //       'Authorization': 'Bearer ' + accessToken
+      //     }
+      //   })
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     throw new Error('Request failed!');
+      //   }, networkError => console.log(networkError.message))
+      //   .then(jsonResponse => {
+      //     user_id = jsonResponse.id;
+      //     console.log(user_id);
+          return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
+          headers: {
+            'Authorization': 'Bearer ' + accessToken
+          }
+        })
+        .then(response => {
+          if(response.ok){
+              return response.json();
+            }
+            throw new Error('Request failed!');
+        })
+        .then(jsonResponse => {
+          console.log(jsonResponse);
+          return jsonResponse.items.map(item => {
+            return {
+              id: item.id,
+              playlistName: item.name
+            }
+          })
+        })//--------
+    }
 }
 
 export default Spotify;

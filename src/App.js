@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
 import AlbumArtistWrapper from './components/AlbumArtistWrapper/AlbumArtistWrapper';
+import PlaylistsBoxList from './components/PlaylistsBoxList/PlaylistsBoxList';
 import Spotify from './util/Spotify';
 
 class App extends React.Component {
@@ -14,13 +15,19 @@ class App extends React.Component {
       albumsList:[],
       artistList:[],
       playlistName: 'New Playlist',
-      playlistTracks: []
+      playlistTracks: [],
+      playlistsBox: []
     };
     this.searchSpotify = this.searchSpotify.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.playlistsLoad = this.playlistsLoad.bind(this);
+  }
+
+  componentWillMount(){
+    Spotify.getAccessToken();
   }
 
   searchSpotify(term) {
@@ -70,24 +77,40 @@ class App extends React.Component {
       });
   }
 
+  playlistsLoad(){
+    Spotify.getPlaylists().then(result => {
+      let updatedPlayLists = result;
+      this.setState({
+        playlistsBox: updatedPlayLists
+      })
+    })
+  }
+
   render() {
+
     return ( <div>
       <h1>Ja<span className = "highlight" >mmm</span>ing</h1 >
       <SearchBar searchSpotify = {this.searchSpotify} />
       <div className = "App">
           <div className = "App-playlist">
+
             < Playlist playlistName = {this.state.playlistName}
                      playlistTracks = {this.state.playlistTracks}
                            onRemove = {this.removeTrack}
                        onNameChange = {this.updatePlaylistName}
-                             onSave = {this.savePlaylist} />
+                             onSave = {this.savePlaylist}
+                          />
+          < PlaylistsBoxList playlistsBox = {this.state.playlistsBox}
+                            playlistsLoad = {this.playlistsLoad} />
+
           </div>
           <div className = "App-SearchResults">
+
             < SearchResults trackList = {this.state.trackList}
                                 onAdd = {this.addTrack} />
             < AlbumArtistWrapper  albumsList = {this.state.albumsList}
                                   artistList = {this.state.artistList}
-                                  searchSpotify = {this.searchSpotify} />
+                               searchSpotify = {this.searchSpotify} />
           </div>
         </div>
       </div>

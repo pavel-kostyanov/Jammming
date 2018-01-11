@@ -1,0 +1,28 @@
+
+
+.PlaylistsBoxList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  height: 500px;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: .88rem;
+  background-color: rgba(1, 12, 63, 0.7);
+  box-shadow: 0 4px 2px 2px #000000;
+  position:relative;
+}
+
+.PlaylistsBoxList>h3 {
+  margin-bottom: 5px;
+}
+
+
+.Playlistsbox {
+  position: relative;
+  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+  text-align: left;
+  width:100%;
+  padding: .4rem;
+}

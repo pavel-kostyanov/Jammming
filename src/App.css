@@ -11,6 +11,7 @@
 .App-playlist {
   display: flex;
   width: 26%;
+  flex-direction: column;
 }
 
 .App-SearchResults {
