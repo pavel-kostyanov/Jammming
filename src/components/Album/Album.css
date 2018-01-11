@@ -27,6 +27,10 @@
   cursor: pointer;
 }
 
+.AlbumName:hover {
+  color: rgba(265, 265, 265, .5);
+}
+
 .AlbumPicture {
   position: relative;
   overflow: hidden;

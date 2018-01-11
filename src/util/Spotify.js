@@ -1,4 +1,4 @@
-const clientID = encodeURIComponent('375cdd6fe8b743cabadc915d2511f27f');
+const clientID = encodeURIComponent('121fe433b47446558d8fb26cace47dfa');
 const scopes = encodeURIComponent('user-read-private playlist-modify-public');
 const responseType = 'token';
 const redirect_uri = encodeURIComponent('http://localhost:3000');
@@ -178,10 +178,16 @@ const Spotify = {
           return jsonResponse.items.map(item => {
             return {
               id: item.id,
-              playlistName: item.name
+              playlistName: item.name,
+              playlistID: item.uri
             }
           })
         })//--------
+    },
+
+    PlaylistTracks(playlistID){
+      let user_id = '8dq8g1bfbkv7cgjum8dykgro3';
+
     }
 }
 

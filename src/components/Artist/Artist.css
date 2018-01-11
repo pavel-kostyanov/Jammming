@@ -13,3 +13,7 @@
   line-height: 1.2;
   cursor: pointer;
 }
+
+.ArtistName:hover {
+  color: rgba(265, 265, 265, .5);
+}

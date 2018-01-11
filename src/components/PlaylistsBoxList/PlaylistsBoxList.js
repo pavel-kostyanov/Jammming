@@ -12,7 +12,8 @@ class PlaylistsBoxList extends React.Component {
         <h3>playlists</h3>
           {this.props.playlistsBox.map(playlist => {
             return <PlaylistsBox key={playlist.id}
-                      playlistName = {playlist.playlistName} />
+                      playlistName = {playlist.playlistName}
+                        playlistID = {playlist.playlistID}/>
             })}
         </div>
     )

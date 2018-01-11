@@ -26,3 +26,11 @@
   width:100%;
   padding: .4rem;
 }
+
+.Playlistsbox>a {
+  cursor: pointer;
+}
+
+.Playlistsbox>a:hover {
+  color: rgba(265, 265, 265, .5);
+}

@@ -24,6 +24,7 @@ class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.playlistsLoad = this.playlistsLoad.bind(this);
+    this.getPlaylistTracks = this.getPlaylistTracks.bind(this);
   }
 
   componentWillMount(){
@@ -74,7 +75,7 @@ class App extends React.Component {
           playlistName: 'New Playlist',
           playlistTracks: []
         });
-      });
+      }).then(() => this.playlistsLoad())
   }
 
   playlistsLoad(){
@@ -84,6 +85,10 @@ class App extends React.Component {
         playlistsBox: updatedPlayLists
       })
     })
+  }
+
+  getPlaylistTracks(playlist_id){
+    Spotify.PlaylistTracks(playlist_id);
   }
 
   render() {
@@ -101,7 +106,9 @@ class App extends React.Component {
                              onSave = {this.savePlaylist}
                           />
           < PlaylistsBoxList playlistsBox = {this.state.playlistsBox}
-                            playlistsLoad = {this.playlistsLoad} />
+                            playlistsLoad = {this.playlistsLoad}
+                            getPlaylistTracks = {this.getPlaylistTracks}
+                             />
 
           </div>
           <div className = "App-SearchResults">
