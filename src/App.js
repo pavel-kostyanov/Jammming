@@ -28,7 +28,11 @@ class App extends React.Component {
   }
 
   componentWillMount(){
-    Spotify.getAccessToken();
+  Spotify.getAccessToken()
+  var promise = new Promise((resolve, reject) => {resolve(Spotify.getUserID())});
+  promise.then((val) => console.log(val));
+  //promise.then(() => {Spotify.getUserID()}).then((item)=>{console.log(item)});
+
   }
 
   searchSpotify(term) {
@@ -78,8 +82,8 @@ class App extends React.Component {
       }).then(() => this.playlistsLoad())
   }
 
-  playlistsLoad(){
-    Spotify.getPlaylists().then(result => {
+  playlistsLoad(user_id){
+    Spotify.getPlaylists(user_id).then(result => {
       let updatedPlayLists = result;
       this.setState({
         playlistsBox: updatedPlayLists
@@ -87,8 +91,13 @@ class App extends React.Component {
     })
   }
 
-  getPlaylistTracks(playlist_id){
-    Spotify.PlaylistTracks(playlist_id);
+  getPlaylistTracks(playlist_id, playlist_name){
+    Spotify.PlaylistTracks(playlist_id).then(value => {
+      this.setState({
+          playlistTracks: value,
+          playlistName: playlist_name
+      })
+    });
   }
 
   render() {

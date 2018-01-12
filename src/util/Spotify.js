@@ -6,6 +6,7 @@ let accessToken;
 let user_id;
 // 375cdd6fe8b743cabadc915d2511f27f
 // '121fe433b47446558d8fb26cace47dfa'
+//user_id = '8dq8g1bfbkv7cgjum8dykgro3';
 const Spotify = {
 
   getAccessToken() {
@@ -37,7 +38,7 @@ const Spotify = {
           return response.json();
         }
         throw new Error('Request failed!');
-      }, networkError => console.log(networkError.message))
+      })
       .then(jsonResponse => {
         user_id = jsonResponse.id;
         return user_id;
@@ -93,21 +94,10 @@ const Spotify = {
   },
 
   savePlaylist(URIs, PlaylistName) {
-    let user_id;
-    return fetch("https://api.spotify.com/v1/me", {
-        headers: {
-          'Authorization': 'Bearer ' + accessToken
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Request failed!');
-      }, networkError => console.log(networkError.message))
-      .then(jsonResponse => {
-        user_id = jsonResponse.id;
-        return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
+      if(!user_id){
+        this.getUserID();
+      }
+      return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
           method: 'POST',
           headers: {
             'Authorization': 'Bearer ' + accessToken,
@@ -117,7 +107,6 @@ const Spotify = {
             name: PlaylistName
           })
         })
-      })
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -146,23 +135,8 @@ const Spotify = {
     },
 
     getPlaylists (){
-      let user_id = '8dq8g1bfbkv7cgjum8dykgro3';
-      //accessToken = 'BQBJWlglYXmj4jAsAYaoHFoFxmCiB8Cr7b6WSHt6VQF1c0swzXe2KGbRwBvJKBZbizYBxsPGYYAilVyjacvgnqx9o5rcV9_Y-IkyveL0323oehNtirsZnJAtCF9_RNWvE4lkd_ehh8Mk9H6z9WAM3pq1Vmwxujs8G6bLari3Ir0uWg1RfCazHheC9fP40TZu0N4z-gOp99HS';
-      // return fetch("https://api.spotify.com/v1/me", {
-      //     headers: {
-      //       'Authorization': 'Bearer ' + accessToken
-      //     }
-      //   })
-      //   .then(response => {
-      //     if (response.ok) {
-      //       return response.json();
-      //     }
-      //     throw new Error('Request failed!');
-      //   }, networkError => console.log(networkError.message))
-      //   .then(jsonResponse => {
-      //     user_id = jsonResponse.id;
-      //     console.log(user_id);
-          return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
+     
+      return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
           headers: {
             'Authorization': 'Bearer ' + accessToken
           }
@@ -172,9 +146,8 @@ const Spotify = {
               return response.json();
             }
             throw new Error('Request failed!');
-        })
+        },networkError => console.log(networkError.message))
         .then(jsonResponse => {
-          console.log(jsonResponse);
           return jsonResponse.items.map(item => {
             return {
               id: item.id,
@@ -186,8 +159,28 @@ const Spotify = {
     },
 
     PlaylistTracks(playlistID){
-      let user_id = '8dq8g1bfbkv7cgjum8dykgro3';
-
+      return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlistID}/tracks`, {
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        }
+      })
+      .then(response => {
+        if(response.ok){
+          return response.json();
+        }
+        throw new Error('Request failed!');
+      },networkError => console.log(networkError.message))
+      .then(jsonResponse => {
+        return jsonResponse.items.map(item => {
+          return {
+            id: item.track.id,
+            name: item.track.name,
+            album: item.track.album.name,
+            artist: item.track.artists[0].name,
+            uri: item.track.uri
+            }
+        })
+      })
     }
 }
 

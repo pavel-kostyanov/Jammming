@@ -1,9 +1,11 @@
 import React from 'react';
 import PlaylistsBox from '../PlaylistsBox/PlaylistsBox'
+import Spotify from '../../util/Spotify';
 
 class PlaylistsBoxList extends React.Component {
+
   componentWillMount(){
-    this.props.playlistsLoad();
+  this.props.playlistsLoad();
   }
 
   render(){
@@ -13,7 +15,8 @@ class PlaylistsBoxList extends React.Component {
           {this.props.playlistsBox.map(playlist => {
             return <PlaylistsBox key={playlist.id}
                       playlistName = {playlist.playlistName}
-                        playlistID = {playlist.playlistID}/>
+                        playlistID = {playlist.id}
+                 getPlaylistTracks = {this.props.getPlaylistTracks}/>
             })}
         </div>
     )

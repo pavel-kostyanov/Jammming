@@ -29,7 +29,7 @@
   font-size: 1.05rem;
   transition: color .25s;
   flex-basis: 5%;
-  text-align: right;
+  text-align: left;
   flex-shrink: 3;
 }
 .Playlist .Track-name {

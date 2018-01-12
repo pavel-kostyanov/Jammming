@@ -2,12 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  position:relative;
   height: 500px;
   margin-right: 20px;
-  padding: .88rem;
+  padding: 0 0 .88rem .88rem;
   background-color: rgba(1, 12, 63, 0.7);
   box-shadow: 0 4px 2px 2px #000000;
+}
+
+.PlaylistTracks {
+  display: flex;
+  flex-direction: column;
+  height:90%;
+  width:100%;
+  overflow-y: scroll;
 }
 
 .Playlist input {
@@ -26,12 +34,14 @@
   width: 10rem;
   padding: .77rem 0;
   border-radius: 54px;
-  margin-top: 1.27rem;
+  margin-top: .8rem;
   background-color: #6c41ec;
   text-align: center;
   font-size: .83rem;
   transition: background-color .25s;
   font-family: 'Work Sans', sans-serif;
+  right: 4%;
+  position: relative;
 }
 
 .Playlist-save:hover {

@@ -9,7 +9,7 @@ class PlaylistsBox extends React.Component {
 
   handleGettingPlaylistTracks(event){
     event.preventDefault();
-    this.props.getPlaylistTracks(event.target.attributes.uri_data.value);
+    this.props.getPlaylistTracks(event.target.attributes.uri_data.value, event.target.text);
   }
 
   render(){
