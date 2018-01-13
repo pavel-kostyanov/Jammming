@@ -4,9 +4,7 @@ const responseType = 'token';
 const redirect_uri = encodeURIComponent('http://localhost:3000');
 let accessToken;
 let user_id;
-// 375cdd6fe8b743cabadc915d2511f27f
-// '121fe433b47446558d8fb26cace47dfa'
-//user_id = '8dq8g1bfbkv7cgjum8dykgro3';
+
 const Spotify = {
 
   getAccessToken() {
@@ -57,46 +55,43 @@ const Spotify = {
         return response.json();
       }
       throw new Error('Request failed!');
-    }, networkError => console.log(networkError.message)).then(jsonResponse => {
-        if(!jsonResponse.tracks.total){
-          alert('Unfortunately, the search returned no results. Try another keyword please')
-        }
-        console.log(jsonResponse);
-        const tracks = jsonResponse.tracks.items.map(item => {
-          return {
-            id: item.id,
-            name: item.name,
-            album: item.album.name,
-            artist: item.artists[0].name,
-            uri: item.uri
-          };
-        })//---------------
-        const albums = jsonResponse.albums.items.map(item => {
-          return {
-            id: item.id,
-            name: item.name,
-            picture: item.images[1].url,
-            artist: item.artists[0].name,
-            uri: item.uri
-          };
-        })//---------------
-        const artists = jsonResponse.artists.items.map(item => {
-          return {
-            id: item.id,
-            name: item.name,
-            uri: item.uri
-          };
-        })//---------------
-
+    }, networkError => console.log(networkError.message))
+      .then(jsonResponse => {
+          if(!jsonResponse.tracks.total){
+            alert('Unfortunately, the search returned no results. Try another keyword please')
+          }//----------------
+          const tracks = jsonResponse.tracks.items.map(item => {
+            return {
+              id: item.id,
+              name: item.name,
+              album: item.album.name,
+              artist: item.artists[0].name,
+              uri: item.uri
+            };
+          })//---------------
+          const albums = jsonResponse.albums.items.map(item => {
+            return {
+              id: item.id,
+              name: item.name,
+              picture: item.images[1].url,
+              artist: item.artists[0].name,
+              uri: item.uri
+            };
+          })//---------------
+          const artists = jsonResponse.artists.items.map(item => {
+            return {
+              id: item.id,
+              name: item.name,
+              uri: item.uri
+            };
+          })//---------------
         const totalSearchResult = [tracks, albums, artists];
         return totalSearchResult;
-    })
+      })
   },
 
   savePlaylist(URIs, PlaylistName) {
-      if(!user_id){
-        this.getUserID();
-      }
+      const user_id = localStorage.getItem('userID');
       return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
           method: 'POST',
           headers: {
@@ -132,10 +127,10 @@ const Spotify = {
           throw new Error('Playlist creation failed!');
         }
       })
-    },
+  },
 
-    getPlaylists (){
-     
+  getPlaylists (){
+     const user_id = localStorage.getItem('userID');
       return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
           headers: {
             'Authorization': 'Bearer ' + accessToken
@@ -177,8 +172,23 @@ const Spotify = {
             name: item.track.name,
             album: item.track.album.name,
             artist: item.track.artists[0].name,
-            uri: item.track.uri
+            uri: item.track.uri,
+            marker: 'existingPlayList',
+            playlist_id: playlistID
             }
+        })
+      })
+    },
+
+    replacePlaylistTracks(URIs, playlist_id){
+      return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + accessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uris: URIs
         })
       })
     }

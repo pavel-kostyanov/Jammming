@@ -25,20 +25,18 @@ class App extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.playlistsLoad = this.playlistsLoad.bind(this);
     this.getPlaylistTracks = this.getPlaylistTracks.bind(this);
+    this.playlistUpdate = this.playlistUpdate.bind(this);
   }
 
   componentWillMount(){
-  Spotify.getAccessToken()
-  var promise = new Promise((resolve, reject) => {resolve(Spotify.getUserID())});
-  promise.then((val) => console.log(val));
-  //promise.then(() => {Spotify.getUserID()}).then((item)=>{console.log(item)});
-
+    Spotify.getAccessToken()
+    var promise = new Promise((resolve, reject) => {resolve(Spotify.getUserID())});
+    promise.then((result) => {localStorage.setItem('userID', result)});
   }
 
   searchSpotify(term) {
     const encodedTerm = encodeURIComponent(term);
     Spotify.search(encodedTerm).then(value => {
-      console.log(value);
       this.setState({
         trackList:  value[0],
         albumsList: value[1],
@@ -92,13 +90,25 @@ class App extends React.Component {
   }
 
   getPlaylistTracks(playlist_id, playlist_name){
-    Spotify.PlaylistTracks(playlist_id).then(value => {
+    Spotify.PlaylistTracks(playlist_id).then(tracks => {
       this.setState({
-          playlistTracks: value,
+          playlistTracks: tracks,
           playlistName: playlist_name
       })
     });
   }
+
+  playlistUpdate(playlist_id){
+    let trackURIs = this.state.playlistTracks.map(item => item.uri);
+    Spotify.replacePlaylistTracks(trackURIs, playlist_id)
+      .then(() => {
+        this.setState({
+          playlistName: 'New Playlist',
+          playlistTracks: []
+        });
+      }).then(() => this.playlistsLoad())
+    }
+
 
   render() {
 
@@ -107,18 +117,16 @@ class App extends React.Component {
       <SearchBar searchSpotify = {this.searchSpotify} />
       <div className = "App">
           <div className = "App-playlist">
-
             < Playlist playlistName = {this.state.playlistName}
                      playlistTracks = {this.state.playlistTracks}
                            onRemove = {this.removeTrack}
                        onNameChange = {this.updatePlaylistName}
                              onSave = {this.savePlaylist}
-                          />
-          < PlaylistsBoxList playlistsBox = {this.state.playlistsBox}
-                            playlistsLoad = {this.playlistsLoad}
-                            getPlaylistTracks = {this.getPlaylistTracks}
-                             />
+                     playlistUpdate = {this.playlistUpdate} />
 
+            < PlaylistsBoxList playlistsBox = {this.state.playlistsBox}
+                              playlistsLoad = {this.playlistsLoad}
+                          getPlaylistTracks = {this.getPlaylistTracks} />
           </div>
           <div className = "App-SearchResults">
 

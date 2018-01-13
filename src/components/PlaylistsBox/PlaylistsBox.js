@@ -9,13 +9,13 @@ class PlaylistsBox extends React.Component {
 
   handleGettingPlaylistTracks(event){
     event.preventDefault();
-    this.props.getPlaylistTracks(event.target.attributes.uri_data.value, event.target.text);
+    this.props.getPlaylistTracks(event.target.attributes.playlist_data.value, event.target.text);
   }
 
   render(){
     return (
       <div className="Playlistsbox">
-        <a onClick = {this.handleGettingPlaylistTracks} uri_data={this.props.playlistID}>
+        <a onClick = {this.handleGettingPlaylistTracks} playlist_data={this.props.playlistID}>
           {this.props.playlistName}
         </a>
       </div>
