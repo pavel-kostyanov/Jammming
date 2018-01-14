@@ -11,7 +11,8 @@ class SearchBar extends React.Component {
   }
 
   handleSearchFieldChange(event){
-    this.setState({term: event.target.value});
+    let promise = new Promise((resolve, reject) => {resolve(this.setState({term: event.target.value}))});
+    promise.then(() => {this.props.searchSpotify(this.state.term)});
   }
 
   handleSearch(event) {

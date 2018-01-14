@@ -26,6 +26,7 @@ class App extends React.Component {
     this.playlistsLoad = this.playlistsLoad.bind(this);
     this.getPlaylistTracks = this.getPlaylistTracks.bind(this);
     this.playlistUpdate = this.playlistUpdate.bind(this);
+    this.cleanList = this.cleanList.bind(this);
   }
 
   componentWillMount(){
@@ -35,14 +36,16 @@ class App extends React.Component {
   }
 
   searchSpotify(term) {
-    const encodedTerm = encodeURIComponent(term);
+    if(term.length > 1){
+    let termin = term + '*';
+    const encodedTerm = encodeURIComponent(termin);
     Spotify.search(encodedTerm).then(value => {
       this.setState({
         trackList:  value[0],
         albumsList: value[1],
         artistList: value[2]
       });
-    });
+    });}
   }
 
   addTrack(track) {
@@ -107,7 +110,14 @@ class App extends React.Component {
           playlistTracks: []
         });
       }).then(() => this.playlistsLoad())
-    }
+  }
+
+  cleanList(){
+     this.setState({
+       playlistName: 'New Playlist',
+       playlistTracks: []
+      });
+  }
 
 
   render() {
@@ -122,7 +132,8 @@ class App extends React.Component {
                            onRemove = {this.removeTrack}
                        onNameChange = {this.updatePlaylistName}
                              onSave = {this.savePlaylist}
-                     playlistUpdate = {this.playlistUpdate} />
+                     playlistUpdate = {this.playlistUpdate}
+                          cleanList = {this.cleanList} />
 
             < PlaylistsBoxList playlistsBox = {this.state.playlistsBox}
                               playlistsLoad = {this.playlistsLoad}

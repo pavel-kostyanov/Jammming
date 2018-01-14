@@ -41,11 +41,11 @@ const Spotify = {
         user_id = jsonResponse.id;
         return user_id;
       })
-    },
+   },
 
   search(term) {
     const accessToken = Spotify.getAccessToken();
-    const urlToFetch = `https://api.spotify.com/v1/search?q=${term}&type=track,album,artist&limit=16`;
+    const urlToFetch = `https://api.spotify.com/v1/search?q=${term}&type=track,album,artist&limit=50`;
     return fetch(urlToFetch, {
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -151,9 +151,9 @@ const Spotify = {
             }
           })
         })//--------
-    },
+   },
 
-    PlaylistTracks(playlistID){
+   PlaylistTracks(playlistID){
       return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlistID}/tracks`, {
         headers: {
           'Authorization': 'Bearer ' + accessToken
@@ -180,7 +180,7 @@ const Spotify = {
       })
     },
 
-    replacePlaylistTracks(URIs, playlist_id){
+   replacePlaylistTracks(URIs, playlist_id){
       return fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
         method: 'PUT',
         headers: {

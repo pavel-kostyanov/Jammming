@@ -29,10 +29,13 @@ class Playlist extends React.Component{
           <div className="PlaylistTracks">
             <TrackList
                 trackList={this.props.playlistTracks}
-                onRemove={this.props.onRemove}
-                minus = {true} />
+                 onRemove={this.props.onRemove}
+                  minus = {true} />
           </div>
+          <div className="ButtonsWrapper">
           <a className="Playlist-save" onClick = {this.handleSaveToSpotify}>SAVE TO SPOTIFY</a>
+          <a className="CleanList"     onClick = {this.props.cleanList}>CLEAN LIST</a>
+          </div>
         </div>
       )
     }

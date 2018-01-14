@@ -32,9 +32,9 @@ class Track extends React.Component {
 
             <div className="Track-information">
                {this.plusOrMinus()}
-               <div className="Track-name">{this.props.track.name}</div>
-               <div className="Track-artist">{this.props.track.artist}</div>
-               <div className="Track-album">{this.props.track.album}</div>
+               <div className="Track-name"   title={this.props.track.name}>{this.props.track.name}</div>
+               <div className="Track-artist" title={this.props.track.artist}>{this.props.track.artist}</div>
+               <div className="Track-album"  title={this.props.track.album}>{this.props.track.album}</div>
              </div>
 
           </div>

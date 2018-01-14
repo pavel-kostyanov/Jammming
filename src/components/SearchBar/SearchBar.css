@@ -1,7 +1,7 @@
 .SearchBar {
   display: flex;
   align-items: center;
-  margin: .9rem 0;  
+  margin: .9rem 0;
 }
 
 .SearchBar input {
@@ -10,7 +10,7 @@
   border: 1px solid #fff;
   border-radius: 30px;
   margin-right: 1.3rem;
-  margin-left: .7rem;
+  margin-left: .9rem;
   color: #010c3f;
   text-align: center;
   font-size: 1rem;
